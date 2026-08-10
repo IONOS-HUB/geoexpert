@@ -1,6 +1,12 @@
+import { useRef } from 'react'
+import { useScrollReveal } from '../lib/useScrollReveal'
+
 export function About() {
+  const sectionRef = useRef<HTMLElement>(null)
+  useScrollReveal(sectionRef, '.about-inner > *')
+
   return (
-    <section className="section about" id="sobre-nosotros" aria-labelledby="about-heading">
+    <section className="section about" id="sobre-nosotros" aria-labelledby="about-heading" ref={sectionRef}>
       <div className="wrap about-inner">
         <h2 id="about-heading">Asesoría técnica para proveedores que ofertan al Estado.</h2>
         <p className="section-lede">

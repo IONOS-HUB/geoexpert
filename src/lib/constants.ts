@@ -52,26 +52,3 @@ export const LEDGER_ENTRIES = [
     body: 'Cada consulta se atiende de forma directa y personal — la misma cercanía que esperarías de un asesor de confianza, aplicada a la contratación pública.',
   },
 ]
-
-export const GALLERY_IMAGES = [
-  {
-    src: '/images/gallery/documentos.jpg',
-    alt: 'Documentos de un proceso de contratación pública ordenados sobre un escritorio',
-    caption: 'Documentación técnica',
-  },
-  {
-    src: '/images/gallery/revision.jpg',
-    alt: 'Persona revisando un pliego de condiciones impreso',
-    caption: 'Revisión de pliegos',
-  },
-  {
-    src: '/images/gallery/oficina.jpg',
-    alt: 'Espacio de trabajo con laptop y carpetas de proceso',
-    caption: 'Seguimiento del proceso',
-  },
-  {
-    src: '/images/gallery/firma.jpg',
-    alt: 'Firma de una oferta técnica sobre una mesa de trabajo',
-    caption: 'Presentación de la oferta',
-  },
-]

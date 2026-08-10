@@ -1,12 +1,15 @@
-import { type FormEvent, useState } from 'react'
+import { type FormEvent, useRef, useState } from 'react'
 import { IconCheck, IconMail, IconPhone, IconPin, IconWhatsapp } from '../Icons'
 import { WHATSAPP_HREF } from '../lib/constants'
+import { useScrollReveal } from '../lib/useScrollReveal'
 
 type FormStatus = 'idle' | 'submitting' | 'submitted'
 
 export function Contact() {
   const [status, setStatus] = useState<FormStatus>('idle')
   const [error, setError] = useState<string | null>(null)
+  const sectionRef = useRef<HTMLElement>(null)
+  useScrollReveal(sectionRef, '.contact-intro, .contact-form-panel')
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -34,7 +37,7 @@ export function Contact() {
   }
 
   return (
-    <section className="section contact" id="contacto" aria-labelledby="contact-heading">
+    <section className="section contact" id="contacto" aria-labelledby="contact-heading" ref={sectionRef}>
       <div className="wrap contact-inner">
         <div className="contact-intro">
           <h2 id="contact-heading">Agenda tu cita</h2>
