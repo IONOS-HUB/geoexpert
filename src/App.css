@@ -125,17 +125,40 @@
   padding-block: 16px;
 }
 
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--signal);
+}
+
+.brand-mark-icon {
+  width: 17px;
+  height: 17px;
+  color: var(--paper);
+  stroke-width: 2.25;
+}
+
 .wordmark {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 19px;
   letter-spacing: 0.01em;
-  color: var(--ink);
+  color: var(--signal);
 }
 
 .wordmark em {
-  font-style: italic;
-  color: var(--signal-dark);
+  font-style: normal;
+  color: var(--signal);
 }
 
 .header-nav {
@@ -620,7 +643,7 @@
 .form-error {
   font-size: 13.5px;
   font-weight: 600;
-  color: #a3311f;
+  color: var(--signal-dark);
 }
 
 .form-success {

@@ -30,13 +30,14 @@ El visitante suele estar evaluando o preparando una oferta para un proceso de co
 
 ## Brand Commitments
 - Slogan fijo, no parafrasear: "Tu aliado técnico en procesos del sector público."
-- Logo: no proporcionado — pendiente de recibir o diseñar.
-- Colores de marca: no proporcionados. El PRD sugiere paleta institucional (azules, grises, blanco) sujeta a aprobación del cliente si este no tiene preferencia — decisión de paleta se resuelve en trabajo de diseño visual, no aquí.
+- Logo proporcionado por el cliente: ícono de check dentro de un cuadrado redondeado, en el mismo maroon de marca, sobre wordmark "GECOP" (bold) / "EXPERT" (regular, misma familia y peso de color), tagline en maroon debajo, todo sobre blanco. El archivo de imagen fue mostrado en el chat pero no se pudo persistir como asset binario en el repo; el sitio reconstruye el ícono en código (checkmark en cuadrado, color de marca) hasta que el cliente entregue el archivo fuente (SVG/PNG) para reemplazarlo por el asset real.
+- Colores de marca confirmados por el cliente: negro y blanco como base, más rojo/maroon **#620a20** como color de marca (tomado del logo). Ya no aplica la paleta institucional azul/gris sugerida en el PRD — el maroon del logo reemplaza esa sugerencia.
 
 ## Evidence on Hand
 - Sin fotos ni video propios del negocio. Decisión confirmada: usar imágenes de stock con temática de licitaciones/documentos/sector público hasta que el cliente entregue material propio.
 - Sin testimonios de clientes disponibles — la sección de "Resultados/Por qué elegirnos" debe apoyarse en el track record declarado (asesoría + resultados en procesos), no en testimonios inventados, hasta que existan.
 - Contacto verificado: teléfono/WhatsApp 0982476489, correo gecopexpert@gmail.com, dirección Pilanquí del BEV, Pasaje B 5-78 y Carlos Emilio Grijalva, horario Lunes a viernes 08:00–18:00, sábados 09:00–14:00.
+- Logo real de la marca (icono check-en-cuadrado + wordmark GECOP EXPERT + tagline) mostrado por el cliente en el chat — confirma paleta blanco/negro/maroon #620a20. Ver Brand Commitments.
 
 ## Product Principles
 1. El track record de resultados es la prueba central de la página — debe ser visible y creíble, no un párrafo genérico de "somos expertos".

@@ -104,8 +104,13 @@ function App() {
 
       <header className="site-header">
         <div className="wrap site-header-inner">
-          <span className="wordmark">
-            GECOP <em>EXPERT</em>
+          <span className="brand">
+            <span className="brand-mark" aria-hidden="true">
+              <IconCheck className="brand-mark-icon" />
+            </span>
+            <span className="wordmark">
+              GECOP <em>EXPERT</em>
+            </span>
           </span>
           <nav className="header-nav" aria-label="Contacto rápido">
             <a className="header-phone" href="tel:+593982476489">
@@ -322,8 +327,13 @@ function App() {
       <footer className="site-footer">
         <div className="wrap footer-inner">
           <div className="footer-brand">
-            <span className="wordmark">
-              GECOP <em>EXPERT</em>
+            <span className="brand">
+              <span className="brand-mark" aria-hidden="true">
+                <IconCheck className="brand-mark-icon" />
+              </span>
+              <span className="wordmark">
+                GECOP <em>EXPERT</em>
+              </span>
             </span>
             <p>Tu aliado técnico en procesos del sector público.</p>
           </div>
