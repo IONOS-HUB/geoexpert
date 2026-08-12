@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { IconCheck } from '../Icons'
 
 export function Footer() {
   return (
@@ -8,7 +7,7 @@ export function Footer() {
         <div className="footer-brand">
           <span className="brand">
             <span className="brand-mark" aria-hidden="true">
-              <IconCheck className="brand-mark-icon" />
+              <img className="brand-mark-icon" src="/logo-mark.png" alt="" width={32} height={32} />
             </span>
             <span className="wordmark">
               GECOP <em>EXPERT</em>

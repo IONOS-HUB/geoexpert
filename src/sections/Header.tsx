@@ -1,4 +1,4 @@
-import { IconCheck, IconPhone } from '../Icons'
+import { IconPhone } from '../Icons'
 
 export function Header() {
   return (
@@ -6,7 +6,7 @@ export function Header() {
       <div className="wrap site-header-inner">
         <span className="brand">
           <span className="brand-mark" aria-hidden="true">
-            <IconCheck className="brand-mark-icon" />
+            <img className="brand-mark-icon" src="/logo-mark.png" alt="" width={32} height={32} />
           </span>
           <span className="wordmark">
             GECOP <em>EXPERT</em>
