@@ -27,11 +27,6 @@ export function PrivacyPolicyPage() {
           <li>Correo electrónico</li>
           <li>El contenido de tu solicitud</li>
         </ul>
-        <p>
-          Adicionalmente, si aceptas o rechazas el aviso de cookies de este sitio, guardamos esa
-          preferencia en el almacenamiento local de tu navegador (localStorage), no en un
-          servidor.
-        </p>
 
         <h2>Finalidad del tratamiento</h2>
         <p>
@@ -65,9 +60,10 @@ export function PrivacyPolicyPage() {
 
         <h2 id="cookies">Cookies y almacenamiento local</h2>
         <p>
-          Este sitio usa únicamente una preferencia funcional guardada en tu navegador (tu
-          respuesta al aviso de cookies). Hoy no utilizamos cookies de analítica ni de
-          marketing.
+          Este sitio no utiliza cookies de ningún tipo, ni de analítica, ni de marketing, ni
+          funcionales. No almacenamos información de seguimiento en tu navegador; solo
+          procesamos los datos que ingresas voluntariamente en el formulario de contacto,
+          descritos arriba.
         </p>
 
         <h2>Contacto</h2>

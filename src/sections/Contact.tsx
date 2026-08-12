@@ -8,7 +8,11 @@ type FormStatus = 'idle' | 'submitting' | 'submitted'
 export function Contact() {
   const [status, setStatus] = useState<FormStatus>('idle')
   const [error, setError] = useState<string | null>(null)
+  const [invalidFields, setInvalidFields] = useState<Set<string>>(new Set())
   const sectionRef = useRef<HTMLElement>(null)
+  const nombreRef = useRef<HTMLInputElement>(null)
+  const telefonoRef = useRef<HTMLInputElement>(null)
+  const correoRef = useRef<HTMLInputElement>(null)
   useScrollReveal(sectionRef, '.contact-intro, .contact-form-panel')
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -19,11 +23,24 @@ export function Contact() {
     const telefono = String(data.get('telefono') ?? '').trim()
     const correo = String(data.get('correo') ?? '').trim()
 
-    if (!nombre || !telefono || !correo) {
+    const missing = new Set<string>()
+    if (!nombre) missing.add('nombre')
+    if (!telefono) missing.add('telefono')
+    if (!correo) missing.add('correo')
+
+    if (missing.size > 0) {
+      setInvalidFields(missing)
       setError('Completa nombre, teléfono y correo para enviar tu solicitud.')
+      const firstInvalidRef = missing.has('nombre')
+        ? nombreRef
+        : missing.has('telefono')
+          ? telefonoRef
+          : correoRef
+      firstInvalidRef.current?.focus()
       return
     }
 
+    setInvalidFields(new Set())
     setError(null)
     setStatus('submitting')
 
@@ -86,21 +103,50 @@ export function Contact() {
             <form className="contact-form" onSubmit={handleSubmit} noValidate>
               <div className="field">
                 <label htmlFor="nombre">Nombre</label>
-                <input id="nombre" name="nombre" type="text" autoComplete="name" required />
+                <input
+                  id="nombre"
+                  name="nombre"
+                  type="text"
+                  autoComplete="name"
+                  required
+                  ref={nombreRef}
+                  aria-invalid={invalidFields.has('nombre') || undefined}
+                  aria-describedby={invalidFields.has('nombre') ? 'form-error' : undefined}
+                />
               </div>
               <div className="field-row">
                 <div className="field">
                   <label htmlFor="telefono">Teléfono</label>
-                  <input id="telefono" name="telefono" type="tel" autoComplete="tel" required />
+                  <input
+                    id="telefono"
+                    name="telefono"
+                    type="tel"
+                    autoComplete="tel"
+                    required
+                    ref={telefonoRef}
+                    aria-invalid={invalidFields.has('telefono') || undefined}
+                    aria-describedby={invalidFields.has('telefono') ? 'form-error' : undefined}
+                  />
                 </div>
                 <div className="field">
-                  <label htmlFor="ruc">RUC</label>
+                  <label htmlFor="ruc">
+                    RUC <span className="field-optional">(opcional)</span>
+                  </label>
                   <input id="ruc" name="ruc" type="text" inputMode="numeric" />
                 </div>
               </div>
               <div className="field">
                 <label htmlFor="correo">Correo electrónico</label>
-                <input id="correo" name="correo" type="email" autoComplete="email" required />
+                <input
+                  id="correo"
+                  name="correo"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  ref={correoRef}
+                  aria-invalid={invalidFields.has('correo') || undefined}
+                  aria-describedby={invalidFields.has('correo') ? 'form-error' : undefined}
+                />
               </div>
               <div className="field">
                 <label htmlFor="solicitud">Solicitud</label>
@@ -113,7 +159,7 @@ export function Contact() {
               </div>
 
               {error && (
-                <p className="form-error" role="alert">
+                <p id="form-error" className="form-error" role="alert">
                   {error}
                 </p>
               )}

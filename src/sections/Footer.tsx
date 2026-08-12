@@ -1,10 +1,7 @@
 import { Link } from 'react-router-dom'
 import { IconCheck } from '../Icons'
-import { useCookieConsentContext } from '../lib/useCookieConsentContext'
 
 export function Footer() {
-  const { reset } = useCookieConsentContext()
-
   return (
     <footer className="site-footer">
       <div className="wrap footer-inner">
@@ -34,9 +31,6 @@ export function Footer() {
           <h3>Legal</h3>
           <Link to="/politica-de-privacidad">Política de Privacidad</Link>
           <Link to="/terminos-y-condiciones">Términos y Condiciones</Link>
-          <button type="button" className="footer-cookie-btn" onClick={reset}>
-            Preferencias de cookies
-          </button>
         </div>
       </div>
       <div className="wrap footer-legal">
