@@ -17,7 +17,7 @@ export function Footer() {
         </div>
         <div className="footer-col">
           <h3>Contacto</h3>
-          <a href="tel:+593982476489">0982 476 489</a>
+          <a href="tel:+593984062064">0984 062 064</a>
           <a href="mailto:gecopexpert@gmail.com">gecopexpert@gmail.com</a>
           <span>Pilanquí del BEV, Pasaje B 5-78 y Carlos Emilio Grijalva</span>
         </div>

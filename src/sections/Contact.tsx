@@ -1,6 +1,6 @@
 import { type FormEvent, useRef, useState } from 'react'
 import { IconCheck, IconMail, IconPhone, IconPin, IconWhatsapp } from '../Icons'
-import { WHATSAPP_HREF } from '../lib/constants'
+import { CONTACT_FORM_WEBHOOK_URL, WHATSAPP_HREF } from '../lib/constants'
 import { useScrollReveal } from '../lib/useScrollReveal'
 
 type FormStatus = 'idle' | 'submitting' | 'submitted'
@@ -15,13 +15,15 @@ export function Contact() {
   const correoRef = useRef<HTMLInputElement>(null)
   useScrollReveal(sectionRef, '.contact-intro, .contact-form-panel')
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const form = event.currentTarget
     const data = new FormData(form)
     const nombre = String(data.get('nombre') ?? '').trim()
     const telefono = String(data.get('telefono') ?? '').trim()
     const correo = String(data.get('correo') ?? '').trim()
+    const ruc = String(data.get('ruc') ?? '').trim()
+    const solicitud = String(data.get('solicitud') ?? '').trim()
 
     const missing = new Set<string>()
     if (!nombre) missing.add('nombre')
@@ -44,13 +46,21 @@ export function Contact() {
     setError(null)
     setStatus('submitting')
 
-    // NOTE: sin backend configurado en este repositorio. Conectar aquí el envío
-    // real (API propia, Formspree, EmailJS, etc.) para notificar a
-    // gecopexpert@gmail.com. Por ahora el formulario valida y confirma en cliente.
-    window.setTimeout(() => {
+    try {
+      const response = await fetch(CONTACT_FORM_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, telefono, correo, ruc, solicitud }),
+      })
+
+      if (!response.ok) throw new Error(`Webhook respondió ${response.status}`)
+
       setStatus('submitted')
       form.reset()
-    }, 500)
+    } catch {
+      setStatus('idle')
+      setError('No pudimos enviar tu solicitud. Intenta de nuevo o escríbenos por WhatsApp.')
+    }
   }
 
   return (
@@ -65,7 +75,7 @@ export function Contact() {
           <ul className="contact-facts">
             <li>
               <IconPhone className="contact-fact-icon" />
-              <a href="tel:+593982476489">0982 476 489</a>
+              <a href="tel:+593984062064">0984 062 064</a>
             </li>
             <li>
               <IconMail className="contact-fact-icon" />

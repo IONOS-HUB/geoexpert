@@ -13,9 +13,9 @@ export function Header() {
           </span>
         </span>
         <nav className="header-nav" aria-label="Contacto rápido">
-          <a className="header-phone" href="tel:+593982476489">
+          <a className="header-phone" href="tel:+593984062064">
             <IconPhone className="header-phone-icon" />
-            0982 476 489
+            0984 062 064
           </a>
           <a className="btn btn-primary btn-sm" href="/#contacto">
             Agenda tu cita
