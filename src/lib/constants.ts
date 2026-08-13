@@ -3,6 +3,7 @@ export const WHATSAPP_MESSAGE = 'Hola GECOP EXPERT, quisiera agendar una asesor√
 export const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
 
 export const CONTACT_FORM_WEBHOOK_URL = 'https://n8n.ionoshub.net/webhook/form-gecopexpert'
+export const CONTACT_FORM_API_KEY = import.meta.env.VITE_CONTACT_FORM_API_KEY as string
 
 export const MATRIX_ROWS = [
   {

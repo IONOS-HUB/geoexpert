@@ -1,6 +1,7 @@
 import { type FormEvent, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { IconCheck, IconMail, IconPhone, IconPin, IconWhatsapp } from '../Icons'
-import { CONTACT_FORM_WEBHOOK_URL, WHATSAPP_HREF } from '../lib/constants'
+import { CONTACT_FORM_API_KEY, CONTACT_FORM_WEBHOOK_URL, WHATSAPP_HREF } from '../lib/constants'
 import { useScrollReveal } from '../lib/useScrollReveal'
 
 type FormStatus = 'idle' | 'submitting' | 'submitted'
@@ -13,6 +14,7 @@ export function Contact() {
   const nombreRef = useRef<HTMLInputElement>(null)
   const telefonoRef = useRef<HTMLInputElement>(null)
   const correoRef = useRef<HTMLInputElement>(null)
+  const consentRef = useRef<HTMLInputElement>(null)
   useScrollReveal(sectionRef, '.contact-intro, .contact-form-panel')
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -24,20 +26,28 @@ export function Contact() {
     const correo = String(data.get('correo') ?? '').trim()
     const ruc = String(data.get('ruc') ?? '').trim()
     const solicitud = String(data.get('solicitud') ?? '').trim()
+    const consentimiento = data.get('consentimiento') === 'on'
 
     const missing = new Set<string>()
     if (!nombre) missing.add('nombre')
     if (!telefono) missing.add('telefono')
     if (!correo) missing.add('correo')
+    if (!consentimiento) missing.add('consentimiento')
 
     if (missing.size > 0) {
       setInvalidFields(missing)
-      setError('Completa nombre, teléfono y correo para enviar tu solicitud.')
+      setError(
+        !nombre || !telefono || !correo
+          ? 'Completa nombre, teléfono y correo para enviar tu solicitud.'
+          : 'Debes aceptar la Política de Protección de Datos para continuar.',
+      )
       const firstInvalidRef = missing.has('nombre')
         ? nombreRef
         : missing.has('telefono')
           ? telefonoRef
-          : correoRef
+          : missing.has('correo')
+            ? correoRef
+            : consentRef
       firstInvalidRef.current?.focus()
       return
     }
@@ -49,7 +59,10 @@ export function Contact() {
     try {
       const response = await fetch(CONTACT_FORM_WEBHOOK_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': CONTACT_FORM_API_KEY,
+        },
         body: JSON.stringify({ nombre, telefono, correo, ruc, solicitud }),
       })
 
@@ -166,6 +179,25 @@ export function Contact() {
                   rows={4}
                   placeholder="Cuéntanos brevemente qué proceso o duda tienes."
                 />
+              </div>
+
+              <div className="field field-consent">
+                <label htmlFor="consentimiento" className="consent-label">
+                  <input
+                    id="consentimiento"
+                    name="consentimiento"
+                    type="checkbox"
+                    ref={consentRef}
+                    aria-invalid={invalidFields.has('consentimiento') || undefined}
+                    aria-describedby={invalidFields.has('consentimiento') ? 'form-error' : undefined}
+                  />
+                  <span>
+                    He leído y acepto la{' '}
+                    <Link to="/politica-de-privacidad" target="_blank" rel="noreferrer">
+                      Política de Protección de Datos
+                    </Link>
+                  </span>
+                </label>
               </div>
 
               {error && (

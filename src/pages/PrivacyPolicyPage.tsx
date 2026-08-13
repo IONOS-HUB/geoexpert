@@ -40,10 +40,21 @@ export function PrivacyPolicyPage() {
           para la finalidad descrita arriba.
         </p>
 
-        <h2>Conservación de datos</h2>
+        <h2>Tiempo de conservación de los datos personales</h2>
         <p>
-          Conservamos tus datos durante el tiempo necesario para gestionar tu solicitud y dar
-          seguimiento a tu proceso.
+          GECOP EXPERT conservará tus datos personales durante todo el tiempo en que exista una
+          relación contractual o de servicio activa contigo como cliente. Adicionalmente,
+          podremos conservar los datos necesarios para cumplir con obligaciones legales,
+          contables y tributarias establecidas por la normativa vigente, incluidos los plazos de
+          conservación de documentación exigidos por las autoridades competentes.
+        </p>
+        <p>
+          Podremos conservar tu nombre, teléfono y correo electrónico de forma indefinida para el
+          envío de comunicaciones e información sobre nuestros servicios, salvo que revoques tu
+          consentimiento en cualquier momento escribiéndonos a{' '}
+          <a href="mailto:gecopexpert@gmail.com">gecopexpert@gmail.com</a>. Una vez finalizada la
+          relación de servicio y cumplidos los plazos legales de conservación aplicables,
+          eliminaremos o anonimizaremos tus datos personales.
         </p>
 
         <h2>Comparación con terceros</h2>

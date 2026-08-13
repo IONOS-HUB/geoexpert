@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { LEGAL_DISCLAIMER, LEGAL_LAST_UPDATED } from '../lib/legalCopy'
 
 export function TermsPage() {
@@ -28,6 +29,12 @@ export function TermsPage() {
           Enviar el formulario no garantiza por sí solo la prestación del servicio. La cita o
           asesoría queda confirmada cuando GECOP EXPERT se contacta contigo por los canales
           indicados (teléfono, correo o WhatsApp).
+        </p>
+        <p>
+          Para enviar el formulario es obligatorio aceptar nuestra{' '}
+          <Link to="/politica-de-privacidad">Política de Privacidad</Link>, donde se detalla qué
+          datos recopilamos, con qué finalidad los usamos y durante cuánto tiempo los
+          conservamos.
         </p>
 
         <h2>Propiedad intelectual</h2>
