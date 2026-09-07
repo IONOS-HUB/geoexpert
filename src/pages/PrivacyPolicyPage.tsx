@@ -1,8 +1,11 @@
 import { LEGAL_DISCLAIMER, LEGAL_LAST_UPDATED } from '../lib/legalCopy'
+import { Seo } from '../components/Seo'
+import { PAGE_SEO } from '../lib/seo'
 
 export function PrivacyPolicyPage() {
   return (
     <section className="section legal-page" aria-labelledby="privacy-heading">
+      <Seo page={PAGE_SEO.privacy} />
       <div className="wrap legal-page-inner">
         <span className="matrix-code">DOC-PRIV</span>
         <h1 id="privacy-heading">Política de Privacidad</h1>

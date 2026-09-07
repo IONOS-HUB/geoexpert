@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom'
+import { Seo } from '../components/Seo'
+import { PAGE_SEO } from '../lib/seo'
 
 export function NotFoundPage() {
   return (
     <section className="section not-found" aria-labelledby="not-found-heading">
+      <Seo page={PAGE_SEO.notFound} />
       <div className="wrap">
         <span className="matrix-code">ERR-404</span>
         <h1 id="not-found-heading">Esta página no está en el expediente.</h1>

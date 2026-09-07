@@ -11,3 +11,6 @@ dist-ssr
 
 *.log
 npm-debug.log*
+
+# Impeccable engine binary (downloaded locally by the skill launcher)
+.claude/skills/impeccable/scripts/bin/

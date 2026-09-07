@@ -5,10 +5,13 @@ import { Gallery } from '../sections/Gallery'
 import { Hero } from '../sections/Hero'
 import { Services } from '../sections/Services'
 import { TrackRecord } from '../sections/TrackRecord'
+import { Seo } from '../components/Seo'
+import { PAGE_SEO } from '../lib/seo'
 
 export function HomePage() {
   return (
     <>
+      <Seo page={PAGE_SEO.home} />
       <Hero />
       <About />
       <Services />

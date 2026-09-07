@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom'
 import { LEGAL_DISCLAIMER, LEGAL_LAST_UPDATED } from '../lib/legalCopy'
+import { Seo } from '../components/Seo'
+import { PAGE_SEO } from '../lib/seo'
 
 export function TermsPage() {
   return (
     <section className="section legal-page" aria-labelledby="terms-heading">
+      <Seo page={PAGE_SEO.terms} />
       <div className="wrap legal-page-inner">
         <span className="matrix-code">DOC-TERM</span>
         <h1 id="terms-heading">Términos y Condiciones</h1>
