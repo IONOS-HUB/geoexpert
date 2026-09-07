@@ -73,3 +73,29 @@ export function IconArrow({ className }: IconProps) {
     </svg>
   )
 }
+
+export function IconChevronLeft({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M15 6 9 12l6 6" />
+    </svg>
+  )
+}
+
+export function IconChevronRight({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="m9 6 6 6-6 6" />
+    </svg>
+  )
+}
+
+export function IconExternal({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M14 5h5v5" />
+      <path d="M10 14 19 5" />
+      <path d="M19 14v4.5a1.5 1.5 0 0 1-1.5 1.5H6.5A1.5 1.5 0 0 1 5 18.5V6.5A1.5 1.5 0 0 1 6.5 5H11" />
+    </svg>
+  )
+}

@@ -65,3 +65,41 @@ export const LEDGER_ENTRIES = [
     body: 'Cada consulta se atiende de forma directa y personal — la misma cercanía que esperarías de un asesor de confianza, aplicada a la contratación pública.',
   },
 ]
+
+export const DOCUMENT_ROWS = [
+  {
+    code: 'DOC-01',
+    kind: 'Convenio marco',
+    label: 'Seguridad y vigilancia',
+    desc: 'Catálogo electrónico general',
+    file: '/docs/CONVENIO MARCO EOTSWAG.pdf',
+  },
+  {
+    code: 'DOC-02',
+    kind: 'Convenio marco',
+    label: 'Limpieza',
+    desc: 'Catálogo dinámico inclusivo',
+    file: '/docs/Convenio Marco Golden Clean.pdf',
+  },
+  {
+    code: 'DOC-03',
+    kind: 'Resumen de puja',
+    label: 'Seguridad',
+    desc: 'Subasta inversa',
+    file: '/docs/Resumen de Puja BH SEC.pdf',
+  },
+  {
+    code: 'DOC-04',
+    kind: 'Resumen de puja',
+    label: 'Implementos policía montada',
+    desc: 'Subasta inversa',
+    file: '/docs/Resumen de Puja IVALKA.pdf',
+  },
+  {
+    code: 'DOC-05',
+    kind: 'Adjudicación',
+    label: 'Seguridad',
+    desc: 'Proceso adjudicado',
+    file: '/docs/Adjudicacion BHSEC.pdf',
+  },
+] as const

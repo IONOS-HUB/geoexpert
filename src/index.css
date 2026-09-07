@@ -699,6 +699,209 @@
     font-size: 15px;
   }
 
+  /* ---------- Documents (expedientes) ---------- */
+
+  .docs {
+    background: var(--paper-sunken);
+  }
+
+  .docs-shell {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: minmax(240px, 0.9fr) minmax(0, 1.4fr);
+    gap: 1px;
+    background: var(--paper-line);
+    border: 1px solid var(--paper-line);
+    border-radius: var(--radius-md);
+    overflow: clip;
+  }
+
+  .docs-index {
+    display: flex;
+    flex-direction: column;
+    background: var(--paper);
+  }
+
+  .docs-index-row {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+    width: 100%;
+    padding: 18px 20px;
+    border: 0;
+    border-bottom: 1px solid var(--paper-line);
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    color: inherit;
+    transition: background-color 160ms ease;
+  }
+
+  .docs-index-row:last-child {
+    border-bottom: none;
+  }
+
+  .docs-index-row:hover {
+    background: color-mix(in srgb, var(--ink) 3%, var(--paper));
+  }
+
+  .docs-index-row.is-active {
+    background: var(--signal-bg);
+  }
+
+  .docs-index-row.is-active .matrix-code,
+  .docs-index-row.is-active .docs-index-kind,
+  .docs-index-row.is-active .docs-index-label {
+    color: var(--signal-dark);
+  }
+
+  .docs-index-body {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .docs-index-kind {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  .docs-index-label {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+
+  .docs-index-desc {
+    font-size: 13.5px;
+    color: var(--ink-mute);
+    line-height: 1.4;
+  }
+
+  .docs-preview {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    background: var(--paper);
+  }
+
+  .docs-preview-bar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--paper-line);
+    background: color-mix(in srgb, var(--ink) 3%, var(--paper));
+  }
+
+  .docs-preview-meta {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    min-width: 0;
+  }
+
+  .docs-preview-kind {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  .docs-preview-title {
+    margin-top: 2px;
+    font-size: clamp(1.05rem, 0.4vw + 0.95rem, 1.25rem);
+    line-height: 1.25;
+  }
+
+  .docs-preview-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    flex: none;
+  }
+
+  .docs-preview-actions .btn-sm {
+    padding-inline: 12px;
+  }
+
+  .docs-frame-wrap {
+    position: relative;
+    background: var(--paper-sunken);
+    min-height: clamp(420px, 62vh, 720px);
+  }
+
+  .docs-frame {
+    display: block;
+    width: 100%;
+    height: clamp(420px, 62vh, 720px);
+    border: 0;
+    background: var(--paper);
+  }
+
+  .docs-frame-fallback {
+    padding: 12px 20px 16px;
+    font-size: 13.5px;
+    color: var(--ink-mute);
+    line-height: 1.5;
+  }
+
+  .docs-frame-fallback a {
+    color: var(--signal-dark);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  @media (max-width: 900px) {
+    .docs-shell {
+      grid-template-columns: 1fr;
+    }
+
+    .docs-index {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(220px, 78vw);
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      border-bottom: 1px solid var(--paper-line);
+    }
+
+    .docs-index-row {
+      scroll-snap-align: start;
+      border-bottom: none;
+      border-right: 1px solid var(--paper-line);
+      min-height: 100%;
+    }
+
+    .docs-frame-wrap,
+    .docs-frame {
+      min-height: 360px;
+      height: min(58vh, 520px);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .docs-preview-bar {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .docs-preview-actions {
+      justify-content: flex-start;
+    }
+  }
+
   /* ---------- Contact ---------- */
 
   .contact-inner {
