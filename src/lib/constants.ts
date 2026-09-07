@@ -1,4 +1,9 @@
-export const WHATSAPP_NUMBER = '593984062064'
+export const CONTACT_PHONE_DISPLAY = '0982 476 489'
+export const CONTACT_PHONE_HREF = 'tel:+593982476489'
+export const CONTACT_EMAIL = 'gecopexpert@gmail.com'
+export const CONTACT_ADDRESS = 'Ibarra: Pilanquí BEV, Pasaje B 5-78 y Carlos Emilio Grijalva'
+
+export const WHATSAPP_NUMBER = '593982476489'
 export const WHATSAPP_MESSAGE = 'Hola GECOP EXPERT, quisiera agendar una asesoría.'
 export const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
 
@@ -31,13 +36,18 @@ export const MATRIX_ROWS = [
 export const SERVICE_ROWS = [
   {
     code: 'SRV-01',
-    label: 'Asesoría en procesos de contratación pública',
-    desc: 'Acompañamiento técnico en cada etapa del proceso: desde la lectura del pliego y la resolución de dudas normativas, hasta la presentación de la oferta ante la entidad contratante.',
+    label: 'Seguridad y vigilancia',
+    desc: 'Asesoría en subasta inversa y catálogo electrónico para proveedores de seguridad y vigilancia: preparación de la oferta, revisión frente al pliego y seguimiento hasta la adjudicación.',
   },
   {
     code: 'SRV-02',
-    label: 'Resultados en los procesos',
-    desc: 'Seguimiento cercano de cada proceso que acompañamos, con foco en que la oferta llegue completa, correcta y a tiempo — el criterio que decide si un proceso se gana o se pierde.',
+    label: 'Limpieza',
+    desc: 'Acompañamiento en catálogo dinámico inclusivo y demás modalidades para servicios de limpieza, con foco en requisitos técnicos, documentación y presentación oportuna de la oferta.',
+  },
+  {
+    code: 'SRV-03',
+    label: 'Implementos para policía montada',
+    desc: 'Elaboración y revisión de ofertas en procesos de subasta inversa para implementos de policía montada, alineando capacidad técnica y propuesta económica al pliego.',
   },
 ]
 

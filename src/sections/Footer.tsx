@@ -1,4 +1,10 @@
 import { Link } from 'react-router-dom'
+import {
+  CONTACT_ADDRESS,
+  CONTACT_EMAIL,
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_PHONE_HREF,
+} from '../lib/constants'
 
 export function Footer() {
   return (
@@ -17,9 +23,9 @@ export function Footer() {
         </div>
         <div className="footer-col">
           <h3>Contacto</h3>
-          <a href="tel:+593984062064">0984 062 064</a>
-          <a href="mailto:gecopexpert@gmail.com">gecopexpert@gmail.com</a>
-          <span>Pilanquí del BEV, Pasaje B 5-78 y Carlos Emilio Grijalva</span>
+          <a href={CONTACT_PHONE_HREF}>{CONTACT_PHONE_DISPLAY}</a>
+          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+          <span>{CONTACT_ADDRESS}</span>
         </div>
         <div className="footer-col">
           <h3>Horario de atención</h3>

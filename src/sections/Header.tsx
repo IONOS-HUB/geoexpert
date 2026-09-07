@@ -1,4 +1,5 @@
 import { IconPhone } from '../Icons'
+import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_HREF } from '../lib/constants'
 
 export function Header() {
   return (
@@ -13,9 +14,9 @@ export function Header() {
           </span>
         </span>
         <nav className="header-nav" aria-label="Contacto rápido">
-          <a className="header-phone" href="tel:+593984062064">
+          <a className="header-phone" href={CONTACT_PHONE_HREF}>
             <IconPhone className="header-phone-icon" />
-            0984 062 064
+            {CONTACT_PHONE_DISPLAY}
           </a>
           <a className="btn btn-primary btn-sm" href="/#contacto">
             Agenda tu cita

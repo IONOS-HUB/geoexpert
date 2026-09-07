@@ -1,7 +1,15 @@
 import { type FormEvent, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { IconCheck, IconMail, IconPhone, IconPin, IconWhatsapp } from '../Icons'
-import { CONTACT_FORM_API_KEY, CONTACT_FORM_WEBHOOK_URL, WHATSAPP_HREF } from '../lib/constants'
+import {
+  CONTACT_ADDRESS,
+  CONTACT_EMAIL,
+  CONTACT_FORM_API_KEY,
+  CONTACT_FORM_WEBHOOK_URL,
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_PHONE_HREF,
+  WHATSAPP_HREF,
+} from '../lib/constants'
 import { useScrollReveal } from '../lib/useScrollReveal'
 
 type FormStatus = 'idle' | 'submitting' | 'submitted'
@@ -88,15 +96,15 @@ export function Contact() {
           <ul className="contact-facts">
             <li>
               <IconPhone className="contact-fact-icon" />
-              <a href="tel:+593984062064">0984 062 064</a>
+              <a href={CONTACT_PHONE_HREF}>{CONTACT_PHONE_DISPLAY}</a>
             </li>
             <li>
               <IconMail className="contact-fact-icon" />
-              <a href="mailto:gecopexpert@gmail.com">gecopexpert@gmail.com</a>
+              <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
             </li>
             <li>
               <IconPin className="contact-fact-icon" />
-              <span>Pilanquí del BEV, Pasaje B 5-78 y Carlos Emilio Grijalva</span>
+              <span>{CONTACT_ADDRESS}</span>
             </li>
           </ul>
 
