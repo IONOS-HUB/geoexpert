@@ -12,6 +12,10 @@ import {
 } from '../lib/constants'
 import { useScrollReveal } from '../lib/useScrollReveal'
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const PHONE_REGEX = /^\+?[0-9\s\-()]{7,20}$/
+const RUC_REGEX = /^\d{10,13}$/
+
 type FormStatus = 'idle' | 'submitting' | 'submitted'
 
 export function Contact() {
@@ -21,9 +25,23 @@ export function Contact() {
   const sectionRef = useRef<HTMLElement>(null)
   const nombreRef = useRef<HTMLInputElement>(null)
   const telefonoRef = useRef<HTMLInputElement>(null)
+  const rucRef = useRef<HTMLInputElement>(null)
   const correoRef = useRef<HTMLInputElement>(null)
   const consentRef = useRef<HTMLInputElement>(null)
   useScrollReveal(sectionRef, '.contact-intro, .contact-form-panel')
+
+  function handleFieldChange(field: string) {
+    if (invalidFields.has(field)) {
+      setInvalidFields((prev) => {
+        const next = new Set(prev)
+        next.delete(field)
+        return next
+      })
+      if (invalidFields.size <= 1) {
+        setError(null)
+      }
+    }
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -32,30 +50,57 @@ export function Contact() {
     const nombre = String(data.get('nombre') ?? '').trim()
     const telefono = String(data.get('telefono') ?? '').trim()
     const correo = String(data.get('correo') ?? '').trim()
-    const ruc = String(data.get('ruc') ?? '').trim()
+    const rucRaw = String(data.get('ruc') ?? '').trim()
+    const ruc = rucRaw.replace(/\s+/g, '')
     const solicitud = String(data.get('solicitud') ?? '').trim()
     const consentimiento = data.get('consentimiento') === 'on'
 
-    const missing = new Set<string>()
-    if (!nombre) missing.add('nombre')
-    if (!telefono) missing.add('telefono')
-    if (!correo) missing.add('correo')
-    if (!consentimiento) missing.add('consentimiento')
+    const phoneDigits = telefono.replace(/\D/g, '')
+    const isPhoneValid = Boolean(telefono) && PHONE_REGEX.test(telefono) && phoneDigits.length >= 7 && phoneDigits.length <= 15
+    const isEmailValid = Boolean(correo) && EMAIL_REGEX.test(correo)
+    const isRucValid = !ruc || RUC_REGEX.test(ruc)
 
-    if (missing.size > 0) {
-      setInvalidFields(missing)
-      setError(
-        !nombre || !telefono || !correo
-          ? 'Completa nombre, teléfono y correo para enviar tu solicitud.'
-          : 'Debes aceptar la Política de Protección de Datos para continuar.',
-      )
-      const firstInvalidRef = missing.has('nombre')
+    const invalid = new Set<string>()
+    if (!nombre) invalid.add('nombre')
+    if (!isPhoneValid) invalid.add('telefono')
+    if (!isEmailValid) invalid.add('correo')
+    if (!isRucValid) invalid.add('ruc')
+    if (!consentimiento) invalid.add('consentimiento')
+
+    if (invalid.size > 0) {
+      setInvalidFields(invalid)
+
+      let message = 'Por favor completa y corrige los campos marcados.'
+      if (!nombre && !telefono && !correo) {
+        message = 'Completa nombre, teléfono y correo para enviar tu solicitud.'
+      } else if (!nombre) {
+        message = 'Por favor ingresa tu nombre.'
+      } else if (!telefono) {
+        message = 'Por favor ingresa tu número de teléfono.'
+      } else if (!isPhoneValid) {
+        message = 'El teléfono debe contener solo números válidos (mínimo 7 dígitos).'
+      } else if (!correo) {
+        message = 'Por favor ingresa tu correo electrónico.'
+      } else if (!isEmailValid) {
+        message = 'Ingresa un correo electrónico válido (debe contener "@" y un dominio como ej. usuario@correo.com).'
+      } else if (!isRucValid) {
+        message = 'El RUC debe contener solo números (10 a 13 dígitos).'
+      } else if (!consentimiento) {
+        message = 'Debes aceptar la Política de Protección de Datos para continuar.'
+      }
+
+      setError(message)
+
+      const firstInvalidRef = invalid.has('nombre')
         ? nombreRef
-        : missing.has('telefono')
+        : invalid.has('telefono')
           ? telefonoRef
-          : missing.has('correo')
-            ? correoRef
-            : consentRef
+          : invalid.has('ruc')
+            ? rucRef
+            : invalid.has('correo')
+              ? correoRef
+              : consentRef
+
       firstInvalidRef.current?.focus()
       return
     }
@@ -143,6 +188,7 @@ export function Contact() {
                   ref={nombreRef}
                   aria-invalid={invalidFields.has('nombre') || undefined}
                   aria-describedby={invalidFields.has('nombre') ? 'form-error' : undefined}
+                  onChange={() => handleFieldChange('nombre')}
                 />
               </div>
               <div className="field-row">
@@ -157,13 +203,24 @@ export function Contact() {
                     ref={telefonoRef}
                     aria-invalid={invalidFields.has('telefono') || undefined}
                     aria-describedby={invalidFields.has('telefono') ? 'form-error' : undefined}
+                    onChange={() => handleFieldChange('telefono')}
                   />
                 </div>
                 <div className="field">
                   <label htmlFor="ruc">
                     RUC <span className="field-optional">(opcional)</span>
                   </label>
-                  <input id="ruc" name="ruc" type="text" inputMode="numeric" />
+                  <input
+                    id="ruc"
+                    name="ruc"
+                    type="text"
+                    inputMode="numeric"
+                    maxLength={13}
+                    ref={rucRef}
+                    aria-invalid={invalidFields.has('ruc') || undefined}
+                    aria-describedby={invalidFields.has('ruc') ? 'form-error' : undefined}
+                    onChange={() => handleFieldChange('ruc')}
+                  />
                 </div>
               </div>
               <div className="field">
@@ -177,6 +234,7 @@ export function Contact() {
                   ref={correoRef}
                   aria-invalid={invalidFields.has('correo') || undefined}
                   aria-describedby={invalidFields.has('correo') ? 'form-error' : undefined}
+                  onChange={() => handleFieldChange('correo')}
                 />
               </div>
               <div className="field">
@@ -198,6 +256,7 @@ export function Contact() {
                     ref={consentRef}
                     aria-invalid={invalidFields.has('consentimiento') || undefined}
                     aria-describedby={invalidFields.has('consentimiento') ? 'form-error' : undefined}
+                    onChange={() => handleFieldChange('consentimiento')}
                   />
                   <span>
                     He leído y acepto la{' '}
