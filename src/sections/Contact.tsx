@@ -1,6 +1,6 @@
 import { type FormEvent, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { IconCheck, IconMail, IconPhone, IconPin, IconWhatsapp } from '../Icons'
+import { IconAlertCircle, IconCheck, IconMail, IconPhone, IconPin, IconWhatsapp } from '../Icons'
 import {
   CONTACT_ADDRESS,
   CONTACT_EMAIL,
@@ -268,9 +268,10 @@ export function Contact() {
               </div>
 
               {error && (
-                <p id="form-error" className="form-error" role="alert">
-                  {error}
-                </p>
+                <div id="form-error" className="form-error" role="alert">
+                  <IconAlertCircle className="form-error-icon" />
+                  <span>{error}</span>
+                </div>
               )}
 
               <button type="submit" className="btn btn-primary btn-block" disabled={status === 'submitting'}>

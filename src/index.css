@@ -997,7 +997,13 @@
 
   .field input[aria-invalid='true'],
   .field textarea[aria-invalid='true'] {
-    border-color: var(--signal);
+    border-color: #dc2626;
+  }
+
+  .field input[aria-invalid='true']:focus-visible,
+  .field textarea[aria-invalid='true']:focus-visible {
+    outline-color: #dc2626;
+    border-color: #dc2626;
   }
 
   .field input:focus-visible,
@@ -1039,9 +1045,25 @@
   }
 
   .form-error {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
     font-size: 13.5px;
-    font-weight: 600;
-    color: var(--signal-dark);
+    font-weight: 500;
+    line-height: 1.45;
+    color: #991b1b;
+    background: #fef2f2;
+    border: 1.5px solid #dc2626;
+    border-radius: var(--radius-sm);
+    padding: 11px 14px;
+  }
+
+  .form-error-icon {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    color: #dc2626;
+    margin-top: 1px;
   }
 
   .form-success {
