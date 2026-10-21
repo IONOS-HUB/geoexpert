@@ -40,6 +40,15 @@ export function Footer() {
       </div>
       <div className="wrap footer-legal">
         <span>© {new Date().getFullYear()} GECOP EXPERT. Todos los derechos reservados.</span>
+        <a
+          href="https://ionoshub.net/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="footer-watermark"
+        >
+          <span>Diseño y desarrollo por:</span>{' '}
+          <span className="footer-watermark-brand">IONOS HUB</span>
+        </a>
       </div>
     </footer>
   )
