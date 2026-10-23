@@ -1,4 +1,6 @@
+import { useGSAP } from '@gsap/react'
 import { useRef } from 'react'
+import { gsap, prefersReducedMotion } from '../lib/gsap'
 import { useScrollReveal } from '../lib/useScrollReveal'
 
 const GALLERY_ITEMS = [
@@ -99,15 +101,42 @@ export function Gallery() {
   const sectionRef = useRef<HTMLElement>(null)
   useScrollReveal(sectionRef, '.gallery-item')
 
+  useGSAP(
+    () => {
+      if (prefersReducedMotion() || !sectionRef.current) return
+      const items = sectionRef.current.querySelectorAll('.gallery-item')
+
+      items.forEach((item, i) => {
+        const strokes = item.querySelectorAll<SVGGeometryElement>('rect, line, path, circle')
+        strokes.forEach((el) => {
+          const length = el.getTotalLength()
+          gsap.set(el, { strokeDasharray: length, strokeDashoffset: length })
+        })
+        gsap.to(strokes, {
+          strokeDashoffset: 0,
+          duration: 1.4,
+          ease: 'power2.inOut',
+          stagger: 0.06,
+          delay: 0.5 + i * 0.15,
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 70%', once: true },
+        })
+      })
+    },
+    { scope: sectionRef },
+  )
+
   return (
     <section className="section gallery" id="galeria" aria-labelledby="gallery-heading" ref={sectionRef}>
       <div className="wrap">
         <h2 id="gallery-heading">El trabajo detrás de cada oferta</h2>
         <div className="gallery-grid">
           {GALLERY_ITEMS.map(({ caption, label, Art }) => (
-            <figure className="gallery-item" key={caption} aria-label={label}>
+            <figure className="gallery-item" key={caption}>
               <Art />
-              <figcaption className="gallery-caption">{caption}</figcaption>
+              <figcaption className="gallery-caption">
+                <span className="gallery-caption-title">{caption}</span>
+                <span className="gallery-caption-label">{label}</span>
+              </figcaption>
             </figure>
           ))}
         </div>

@@ -159,6 +159,9 @@ Small, restrained radii throughout: `3px` on buttons, inputs, and the skip-link;
 ### Brand Mark (signature)
 A maroon rounded-square containing a white checkmark, paired with the "GECOP EXPERT" wordmark set in Spectral, both in signal maroon, no italics or weight split between the two words. Reconstructed in code from the client-supplied logo reference (checkmark-in-square + wordmark on white); replace with the client's sourced SVG/PNG when available — this is a placeholder for a real asset, not a final design decision.
 
+### Mascot (the brand mark, alive)
+The logo's check-in-square drawn as a small advisor: paper body with a 5px maroon outline, the check as its smile, ink limbs, and a maroon-based rubber stamp in its right hand. It stands on the hero matrix's top edge and is the one who stamps each row CUMPLE: wind-up, slam, body squash, maroon ink burst, chip turns. Afterward its eyes follow a fine pointer, and hovering it triggers one hello-stamp. It uses only ink, paper, and maroon, which keeps the One Signal Rule. It appears in the hero only: one character on one stage, never repeated as decoration elsewhere. Under reduced motion it stands still with the stamp raised. Source: `src/sections/Mascot.tsx`; rig and motion: `src/sections/Matrix.tsx`.
+
 ## Do's and Don'ts
 
 ### Do:

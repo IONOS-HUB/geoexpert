@@ -1,6 +1,6 @@
 import { type FormEvent, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { IconCheck, IconMail, IconPhone, IconPin, IconWhatsapp } from '../Icons'
+import { IconCheck, IconClock, IconMail, IconPhone, IconPin, IconWhatsapp } from '../Icons'
 import {
   CONTACT_ADDRESS,
   CONTACT_EMAIL,
@@ -23,7 +23,7 @@ export function Contact() {
   const telefonoRef = useRef<HTMLInputElement>(null)
   const correoRef = useRef<HTMLInputElement>(null)
   const consentRef = useRef<HTMLInputElement>(null)
-  useScrollReveal(sectionRef, '.contact-intro, .contact-form-panel')
+  useScrollReveal(sectionRef, '.contact-intro > :not(h2), .contact-form-panel')
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -105,6 +105,10 @@ export function Contact() {
             <li>
               <IconPin className="contact-fact-icon" />
               <span>{CONTACT_ADDRESS}</span>
+            </li>
+            <li>
+              <IconClock className="contact-fact-icon" />
+              <span>Lunes a viernes 08:00–18:00 · Sábados 09:00–14:00</span>
             </li>
           </ul>
 

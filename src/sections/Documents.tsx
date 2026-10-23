@@ -1,6 +1,8 @@
+import { useGSAP } from '@gsap/react'
 import { useEffect, useId, useRef, useState } from 'react'
 import { IconChevronLeft, IconChevronRight, IconExternal } from '../Icons'
 import { DOCUMENT_ROWS } from '../lib/constants'
+import { EASE_INK, gsap, prefersReducedMotion } from '../lib/gsap'
 import { useScrollReveal } from '../lib/useScrollReveal'
 
 function encodeDocPath(file: string) {
@@ -15,10 +17,27 @@ export function Documents() {
   const [activeIndex, setActiveIndex] = useState(0)
   const sectionRef = useRef<HTMLElement>(null)
   const listId = useId()
-  useScrollReveal(sectionRef, '.docs-shell')
+  useScrollReveal(sectionRef, '.docs .section-lede, .docs-shell')
 
   const active = DOCUMENT_ROWS[activeIndex]
   const previewSrc = `${encodeDocPath(active.file)}#view=FitH`
+
+  const hasSwitched = useRef(false)
+  useGSAP(
+    () => {
+      if (!hasSwitched.current) {
+        hasSwitched.current = true
+        return
+      }
+      if (prefersReducedMotion()) return
+      gsap.fromTo(
+        '.docs-preview-meta, .docs-frame',
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 0.45, ease: EASE_INK, stagger: 0.06, clearProps: 'transform' },
+      )
+    },
+    { scope: sectionRef, dependencies: [activeIndex] },
+  )
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {

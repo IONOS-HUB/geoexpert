@@ -1,7 +1,7 @@
 import { useGSAP } from '@gsap/react'
 import { useRef } from 'react'
-import { IconArrow, IconWhatsapp } from '../Icons'
-import { gsap, prefersReducedMotion } from '../lib/gsap'
+import { IconArrow, IconClock, IconWhatsapp } from '../Icons'
+import { addLineReveal, EASE_INK, gsap, prefersReducedMotion } from '../lib/gsap'
 import { WHATSAPP_HREF } from '../lib/constants'
 import { Matrix } from './Matrix'
 
@@ -9,18 +9,28 @@ export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
 
   useGSAP(
-    () => {
-      if (prefersReducedMotion() || !sectionRef.current) return
+    (_context, contextSafe) => {
+      if (prefersReducedMotion() || !sectionRef.current || !contextSafe) return
 
-      const copyTargets = sectionRef.current.querySelectorAll('.hero-copy > *')
+      const heading = sectionRef.current.querySelector('h1')
+      const copyTargets = sectionRef.current.querySelectorAll('.hero-copy > :not(h1)')
       const matrixTarget = sectionRef.current.querySelector('.matrix')
 
-      gsap.set(copyTargets, { opacity: 0, y: 16 })
-      if (matrixTarget) gsap.set(matrixTarget, { opacity: 0, y: 16 })
+      if (heading) gsap.set(heading, { opacity: 0 })
+      gsap.set(copyTargets, { opacity: 0, y: 18 })
+      if (matrixTarget) gsap.set(matrixTarget, { opacity: 0, y: 40, scale: 0.97, filter: 'blur(8px)' })
 
-      const tl = gsap.timeline({ defaults: { ease: 'power2.out' } })
-      tl.to(copyTargets, { opacity: 1, y: 0, duration: 0.4, stagger: 0.08 })
-      if (matrixTarget) tl.to(matrixTarget, { opacity: 1, y: 0, duration: 0.4 }, '-=0.25')
+      document.fonts.ready.then(
+        contextSafe(() => {
+          const tl = gsap.timeline({ defaults: { ease: EASE_INK } })
+          if (heading) addLineReveal(tl, heading)
+          tl.to(copyTargets, { opacity: 1, y: 0, duration: 0.8, stagger: 0.08 }, '-=0.55')
+          if (matrixTarget) {
+            tl.to(matrixTarget, { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.1 }, 0.25)
+            tl.set(matrixTarget, { clearProps: 'filter,transform' })
+          }
+        }),
+      )
     },
     { scope: sectionRef },
   )
@@ -45,6 +55,10 @@ export function Hero() {
               Escríbenos por WhatsApp
             </a>
           </div>
+          <p className="hero-meta">
+            <IconClock className="hero-meta-icon" />
+            Lunes a viernes 08:00–18:00 · Sábados 09:00–14:00
+          </p>
         </div>
 
         <Matrix />

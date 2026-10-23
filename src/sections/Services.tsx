@@ -4,12 +4,14 @@ import { useScrollReveal } from '../lib/useScrollReveal'
 
 export function Services() {
   const sectionRef = useRef<HTMLElement>(null)
-  useScrollReveal(sectionRef, '.service-row')
+  useScrollReveal(sectionRef, '.service-row', 'wipe')
 
   return (
     <section className="section services" id="servicios" aria-labelledby="services-heading" ref={sectionRef}>
-      <div className="wrap">
-        <h2 id="services-heading">Lo que cubrimos por ti</h2>
+      <div className="wrap section-split">
+        <div className="section-head">
+          <h2 id="services-heading">Lo que cubrimos por ti</h2>
+        </div>
         <div className="service-rows">
           {SERVICE_ROWS.map((row) => (
             <article className="service-row" key={row.code}>
